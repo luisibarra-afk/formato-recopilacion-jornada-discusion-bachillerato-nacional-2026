@@ -4,15 +4,17 @@ Formulario individual para docentes (`index.html`) conectado a Google Apps Scrip
 
 ## Correspondencia de preguntas
 
+El formulario docente numera del 1 al 7; la hoja "Resumen" conserva la numeración del formato oficial (7 a 13) para transcribirla directamente.
+
 | Formulario oficial | Formulario docente | Concentrado (hoja "Resumen") |
 |---|---|---|
-| 7. Pertinencia 7.1–7.5 | Misma escala por docente | Conteo por opción y respuesta predominante |
-| 8. Tres razones | Tres razones por docente | Lista de todas las razones |
-| 9. Retos | Texto libre | Lista de retos |
-| 10. Conocimiento 10.1–10.4 | Misma escala por docente | Conteo y respuesta predominante |
-| 11. Tres usos por material | Hasta 3 usos por material (solo si lo conoce) | Lista por material |
-| 12. Proporción que cursó el taller | ¿Cursó el taller? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
-| 13. Proporción que realizó el curso | ¿Realizó el curso? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
+| 7. Pertinencia 7.1–7.5 | 1. Misma escala por docente | Conteo por opción y respuesta predominante |
+| 8. Tres razones | 2. Tres razones por docente | Lista de todas las razones |
+| 9. Retos | 3. Texto libre | Lista de retos |
+| 10. Conocimiento 10.1–10.4 | 4. Misma escala por docente | Conteo y respuesta predominante |
+| 11. Tres usos por material | 5. Hasta 3 usos por material (obligatorio al menos uno si marcó Poco o Mucho) | Lista por material |
+| 12. Proporción que cursó el taller | 6. ¿Cursó el taller? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
+| 13. Proporción que realizó el curso | 7. ¿Realizó el curso? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
 
 Las preguntas 1–6 (caracterización del plantel) no se piden al docente; las llena la persona relatora.
 

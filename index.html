@@ -87,6 +87,14 @@
       .matrix td:not(:first-child) .mobile-label { display: inline; }
     }
     .mobile-label { display: none; font-size: 13px; }
+
+    .overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, .6); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+    .overlay.show { display: flex; }
+    .overlay-box { background: #fff; border-radius: var(--radius); padding: 32px 40px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
+    .overlay-box p { font-size: 20px; font-weight: 700; color: var(--primary); margin-top: 16px; }
+    .overlay-box small { color: var(--gray-500); }
+    .spinner { width: 56px; height: 56px; margin: 0 auto; border: 6px solid var(--gray-200); border-top-color: var(--primary); border-radius: 50%; animation: girar .9s linear infinite; }
+    @keyframes girar { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -138,12 +146,12 @@
         </div>
       </div>
 
-      <!-- ===== 7–8 ELEMENTOS MODIFICADOS ===== -->
+      <!-- ===== 1–2 ELEMENTOS MODIFICADOS ===== -->
       <div class="section">
         <div class="section-title">Elementos que tuvieron modificaciones en el MCCEMS 2025</div>
         <div class="section-body">
           <div class="q">
-            <span class="q-label">7. ¿Qué tan pertinentes considera los cambios del MCCEMS 2025 en cada uno de los siguientes elementos? <span class="req">*</span></span>
+            <span class="q-label">1. ¿Qué tan pertinentes considera los cambios del MCCEMS 2025 en cada uno de los siguientes elementos? <span class="req">*</span></span>
             <table class="matrix" data-matrix="p7">
               <thead>
                 <tr><th>Elemento</th><th>Nada pertinente</th><th>Poco pertinente</th><th>Muy pertinente</th></tr>
@@ -153,7 +161,7 @@
           </div>
 
           <div class="q">
-            <span class="q-label">8. Mencione las tres principales razones por las que considera que los cambios a los elementos del MCCEMS fueron o no fueron pertinentes <span class="req">*</span></span>
+            <span class="q-label">2. Mencione las tres principales razones por las que considera que los cambios a los elementos del MCCEMS fueron o no fueron pertinentes <span class="req">*</span></span>
             <div class="numbered"><span>1</span><input type="text" name="p8_1" required></div>
             <div class="numbered"><span>2</span><input type="text" name="p8_2" required></div>
             <div class="numbered"><span>3</span><input type="text" name="p8_3" required></div>
@@ -161,23 +169,23 @@
         </div>
       </div>
 
-      <!-- ===== 9 IMPLEMENTACIÓN ===== -->
+      <!-- ===== 3 IMPLEMENTACIÓN ===== -->
       <div class="section">
         <div class="section-title">Implementación del MCCEMS</div>
         <div class="section-body">
           <div class="q">
-            <label class="q-label" for="p9">9. ¿Qué retos ha enfrentado para comprender e implementar los programas de asignatura del MCCEMS? <span class="req">*</span></label>
+            <label class="q-label" for="p9">3. ¿Qué retos ha enfrentado para comprender e implementar los programas de asignatura del MCCEMS? <span class="req">*</span></label>
             <textarea id="p9" name="p9" required></textarea>
           </div>
         </div>
       </div>
 
-      <!-- ===== 10–11 MATERIALES ===== -->
+      <!-- ===== 4–5 MATERIALES ===== -->
       <div class="section">
         <div class="section-title">Materiales y recursos para la implementación del MCCEMS 2025</div>
         <div class="section-body">
           <div class="q">
-            <span class="q-label">10. ¿Qué tanto conoce los siguientes recursos y materiales de apoyo del MCCEMS 2025? <span class="req">*</span></span>
+            <span class="q-label">4. ¿Qué tanto conoce los siguientes recursos y materiales de apoyo del MCCEMS 2025? <span class="req">*</span></span>
             <table class="matrix" data-matrix="p10">
               <thead>
                 <tr><th>Recurso / material</th><th>Nada</th><th>Poco</th><th>Mucho</th></tr>
@@ -187,20 +195,20 @@
           </div>
 
           <div class="q">
-            <span class="q-label">11. Mencione los tres principales usos que le ha dado a cada uno de los materiales</span>
-            <p class="q-help">Se habilita solo para los materiales que conoce (Poco o Mucho). Es obligatorio al menos un uso por material habilitado.</p>
+            <span class="q-label">5. Mencione los tres principales usos que le ha dado a cada uno de los materiales</span>
+            <p class="q-help">Si en la pregunta 4 marcó Poco o Mucho en un material, anote al menos un uso de ese material.</p>
             <div id="usos-container"></div>
           </div>
         </div>
       </div>
 
-      <!-- ===== 12–13 FORMACIÓN ===== -->
+      <!-- ===== 6–7 FORMACIÓN ===== -->
       <div class="section">
         <div class="section-title">Formación docente</div>
         <div class="section-body">
           <p class="q-help" style="margin:0 0 16px">Ambos disponibles en: <a href="https://view.genially.com/6a3d61ddca64e450c7303faf" target="_blank" rel="noopener">https://view.genially.com/6a3d61ddca64e450c7303faf</a></p>
           <div class="q">
-            <span class="q-label">12. ¿Cursó el taller “Apropiación del MCCEMS: contextos, comunidad y articulación de saberes”, impulsado por la COSAC? <span class="req">*</span></span>
+            <span class="q-label">6. ¿Cursó el taller “Apropiación del MCCEMS: contextos, comunidad y articulación de saberes”, impulsado por la COSAC? <span class="req">*</span></span>
             <div class="options">
               <label><input type="radio" name="p12" value="Sí, lo concluí" required> Sí, lo concluí</label>
               <label><input type="radio" name="p12" value="Lo inicié, pero no lo he concluido"> Lo inicié, pero no lo he concluido</label>
@@ -208,7 +216,7 @@
             </div>
           </div>
           <div class="q">
-            <span class="q-label">13. ¿Realizó el curso “Hacia la consolidación del MCCEMS: claves para comprender el Modelo Educativo 2025”, impulsado por la COSAC? <span class="req">*</span></span>
+            <span class="q-label">7. ¿Realizó el curso “Hacia la consolidación del MCCEMS: claves para comprender el Modelo Educativo 2025”, impulsado por la COSAC? <span class="req">*</span></span>
             <div class="options">
               <label><input type="radio" name="p13" value="Sí, lo concluí" required> Sí, lo concluí</label>
               <label><input type="radio" name="p13" value="Lo inicié, pero no lo he concluido"> Lo inicié, pero no lo he concluido</label>
@@ -231,30 +239,39 @@
     </form>
   </div>
 
+  <div id="overlay" class="overlay" role="alert" aria-live="assertive">
+    <div class="overlay-box">
+      <div class="spinner"></div>
+      <p>Enviando…</p>
+      <small>No cierre ni recargue la página.</small>
+    </div>
+  </div>
+
   <script>
     // URL de la implementación del Web App de Google Apps Script (ver Code.gs / README.md)
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOQL2900YEXo5e3Z6BMyNQG2RPiVUq3LBbRQchD4XmjgK9HIu_p9ghbgSVLwdPOaAKhw/exec';
 
     const P7_ITEMS = [
-      ['p7_1', '7.1 Fortalecimiento del sustento filosófico y pedagógico del MCCEMS'],
-      ['p7_2', '7.2 Reducción a una meta educativa por asignatura'],
-      ['p7_3', '7.3 Simplificación de los propósitos formativos'],
-      ['p7_4', '7.4 Precisión de los principios de la transversalidad para el aprendizaje integral y situado'],
-      ['p7_5', '7.5 Desarrollo de los principios de evaluación formativa']
+      ['p7_1', '1.1 Fortalecimiento del sustento filosófico y pedagógico del MCCEMS'],
+      ['p7_2', '1.2 Reducción a una meta educativa por asignatura'],
+      ['p7_3', '1.3 Simplificación de los propósitos formativos'],
+      ['p7_4', '1.4 Precisión de los principios de la transversalidad para el aprendizaje integral y situado'],
+      ['p7_5', '1.5 Desarrollo de los principios de evaluación formativa']
     ];
     const P7_SCALE = ['Nada pertinente', 'Poco pertinente', 'Muy pertinente'];
 
     const P10_ITEMS = [
-      ['p10_1', '10.1 Modelo Educativo 2025. Marco Curricular Común de la Educación Media Superior', 'https://educacionmediasuperior.sep.gob.mx/modeloeducativo2025.html'],
-      ['p10_2', '10.2 Programas de asignatura', 'https://educacionmediasuperior.sep.gob.mx/modeloeducativo2025.html'],
-      ['p10_3', '10.3 Materiales educativos. Comunidad docente', 'https://cosac.sems.gob.mx/Materiales/web/'],
-      ['p10_4', '10.4 Materiales educativos. Comunidad estudiantil', 'https://cosac.sems.gob.mx/Materiales/web/']
+      ['p10_1', '4.1 Modelo Educativo 2025. Marco Curricular Común de la Educación Media Superior', 'https://educacionmediasuperior.sep.gob.mx/modeloeducativo2025.html'],
+      ['p10_2', '4.2 Programas de asignatura', 'https://educacionmediasuperior.sep.gob.mx/modeloeducativo2025.html'],
+      ['p10_3', '4.3 Materiales educativos. Comunidad docente', 'https://cosac.sems.gob.mx/Materiales/web/'],
+      ['p10_4', '4.4 Materiales educativos. Comunidad estudiantil', 'https://cosac.sems.gob.mx/Materiales/web/']
     ];
     const P10_SCALE = ['Nada', 'Poco', 'Mucho'];
 
     const form = document.getElementById('form-jornada');
     const msg = document.getElementById('msg');
     const btn = document.getElementById('btn-enviar');
+    const overlay = document.getElementById('overlay');
 
     function buildMatrix(tableKey, items, scale) {
       const tbody = document.querySelector(`[data-matrix="${tableKey}"] tbody`);
@@ -286,20 +303,9 @@
         const card = document.createElement('div');
         card.className = 'uso-card';
         card.dataset.material = name;
-        card.innerHTML = `<h4>11.${n} ${label.replace(/^10\.\d\s/, '')}</h4>` +
-          [1, 2, 3].map(i => `<div class="numbered"><span>${i}</span><input type="text" name="p11_${n}_${i}" disabled placeholder="Uso ${i}"></div>`).join('');
+        card.innerHTML = `<h4>5.${n} ${label.replace(/^4\.\d\s/, '')}</h4>` +
+          [1, 2, 3].map(i => `<div class="numbered"><span>${i}</span><input type="text" name="p11_${n}_${i}" placeholder="Uso ${i}"></div>`).join('');
         container.appendChild(card);
-      });
-    }
-
-    function syncUsos() {
-      P10_ITEMS.forEach(([name]) => {
-        const sel = form.querySelector(`input[name="${name}"]:checked`);
-        const enabled = sel && sel.value !== 'Nada';
-        document.querySelectorAll(`[data-material="${name}"] input`).forEach(inp => {
-          inp.disabled = !enabled;
-          if (!enabled) inp.value = '';
-        });
       });
     }
 
@@ -332,8 +338,9 @@
         }
       });
       P10_ITEMS.forEach(([name]) => {
+        const sel = form.querySelector(`input[name="${name}"]:checked`);
         const inputs = [...document.querySelectorAll(`[data-material="${name}"] input`)];
-        if (!inputs[0].disabled && !inputs.some(i => i.value.trim())) {
+        if (sel && sel.value !== 'Nada' && !inputs.some(i => i.value.trim())) {
           inputs[0].classList.add('field-error');
           errors.push(inputs[0]);
         }
@@ -357,8 +364,7 @@
     buildMatrix('p7', P7_ITEMS, P7_SCALE);
     buildMatrix('p10', P10_ITEMS, P10_SCALE);
     buildUsos();
-    form.addEventListener('change', e => { if (e.target.name && e.target.name.startsWith('p10_')) syncUsos(); });
-    form.addEventListener('reset', () => setTimeout(() => { syncUsos(); msg.className = 'msg'; }, 0));
+    form.addEventListener('reset', () => { msg.className = 'msg'; });
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -367,7 +373,7 @@
       if (SCRIPT_URL.startsWith('PEGAR')) { showMsg('Falta configurar la URL del Web App de Apps Script (SCRIPT_URL).', 'err'); return; }
 
       btn.disabled = true;
-      btn.textContent = 'Enviando…';
+      overlay.classList.add('show');
       try {
         // text/plain evita la solicitud preflight CORS que Apps Script no responde
         const res = await fetch(SCRIPT_URL, {
@@ -385,7 +391,7 @@
         showMsg('No se pudo enviar: ' + err.message + '. Intente de nuevo.', 'err');
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Enviar respuestas';
+        overlay.classList.remove('show');
       }
     });
   </script>
