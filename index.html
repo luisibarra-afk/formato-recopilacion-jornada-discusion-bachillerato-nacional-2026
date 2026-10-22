@@ -153,9 +153,10 @@
 
           <div class="q">
             <span class="q-label">2. Mencione las tres principales razones por las que considera que los cambios a los elementos del MCCEMS fueron o no fueron pertinentes <span class="req">*</span></span>
+            <p class="q-help">Mínimo una razón; la 2 y la 3 son opcionales.</p>
             <div class="numbered"><span>1</span><input type="text" name="p8_1" required></div>
-            <div class="numbered"><span>2</span><input type="text" name="p8_2" required></div>
-            <div class="numbered"><span>3</span><input type="text" name="p8_3" required></div>
+            <div class="numbered"><span>2</span><input type="text" name="p8_2" placeholder="Opcional"></div>
+            <div class="numbered"><span>3</span><input type="text" name="p8_3" placeholder="Opcional"></div>
           </div>
         </div>
       </div>
@@ -187,7 +188,7 @@
 
           <div class="q">
             <span class="q-label">5. Mencione los tres principales usos que le ha dado a cada uno de los materiales</span>
-            <p class="q-help">Si en la pregunta 4 marcó Poco o Mucho en un material, anote al menos un uso de ese material.</p>
+            <p class="q-help">Mínimo un uso en total; no es necesario llenar los tres usos ni todos los materiales.</p>
             <div id="usos-container"></div>
           </div>
         </div>
@@ -328,14 +329,16 @@
           errors.push(box);
         }
       });
-      P10_ITEMS.forEach(([name]) => {
+      // Pregunta 5: basta un uso en cualquier material, salvo que no conozca ninguno
+      const conoceAlguno = P10_ITEMS.some(([name]) => {
         const sel = form.querySelector(`input[name="${name}"]:checked`);
-        const inputs = [...document.querySelectorAll(`[data-material="${name}"] input`)];
-        if (sel && sel.value !== 'Nada' && !inputs.some(i => i.value.trim())) {
-          inputs[0].classList.add('field-error');
-          errors.push(inputs[0]);
-        }
+        return sel && sel.value !== 'Nada';
       });
+      const usos = [...document.querySelectorAll('#usos-container input')];
+      if (conoceAlguno && !usos.some(i => i.value.trim())) {
+        usos[0].classList.add('field-error');
+        errors.push(usos[0]);
+      }
 
       if (errors.length) {
         errors[0].scrollIntoView({ behavior: 'smooth', block: 'center' });

@@ -9,10 +9,10 @@ El formulario docente numera del 1 al 7; la hoja "Resumen" conserva la numeraci�
 | Formulario oficial | Formulario docente | Concentrado (hoja "Resumen") |
 |---|---|---|
 | 7. Pertinencia 7.1–7.5 | 1. Misma escala por docente | Conteo por opción y respuesta predominante |
-| 8. Tres razones | 2. Tres razones por docente | Lista de todas las razones |
+| 8. Tres razones | 2. Hasta 3 razones (mínimo 1) | Lista de todas las razones |
 | 9. Retos | 3. Texto libre | Lista de retos |
 | 10. Conocimiento 10.1–10.4 | 4. Misma escala por docente | Conteo y respuesta predominante |
-| 11. Tres usos por material | 5. Hasta 3 usos por material (obligatorio al menos uno si marcó Poco o Mucho) | Lista por material |
+| 11. Tres usos por material | 5. Hasta 3 usos por material (mínimo 1 uso en total) | Lista por material |
 | 12. Proporción que cursó el taller | 6. ¿Cursó el taller? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
 | 13. Proporción que realizó el curso | 7. ¿Realizó el curso? (Sí / Iniciado / No) | % que concluyó y rango (cuartos) |
 
