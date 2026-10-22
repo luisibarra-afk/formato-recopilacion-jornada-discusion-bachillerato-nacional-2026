@@ -76,15 +76,36 @@
     .msg.err { display: block; background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
     .field-error { outline: 2px solid var(--red); }
 
+    .options label:has(input:checked) { border-color: var(--primary); background: #f8eef1; font-weight: 600; }
+
     @media (max-width: 640px) {
+      body { padding: 12px 10px 48px; }
+      header.banner { padding: 18px 16px; }
+      header.banner h1 { font-size: 17px; }
+      header.banner p { font-size: 13px; }
+      .intro { padding: 16px; }
+      .section-title { padding: 12px 14px; }
       .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .section-body { padding: 16px; }
+      .section-body { padding: 16px 14px; }
+      .q-label { font-size: 16px; }
+      /* 16px evita que iPhone haga zoom al escribir */
+      input[type="text"], select, textarea { font-size: 16px; padding: 12px; }
       .matrix thead { display: none; }
       .matrix, .matrix tbody, .matrix tr, .matrix td { display: block; width: 100%; }
-      .matrix tr { border-bottom: 1px solid var(--gray-200); padding: 8px 0; }
-      .matrix td { border: none; text-align: left; padding: 4px 0; }
-      .matrix td:not(:first-child) label { display: flex; gap: 8px; align-items: center; }
-      .matrix td:not(:first-child) .mobile-label { display: inline; }
+      .matrix tr { border-bottom: 1px solid var(--gray-200); padding: 12px 0; }
+      .matrix td { border: none; text-align: left; padding: 3px 0; }
+      .matrix td:first-child { font-weight: 600; margin-bottom: 6px; }
+      .matrix td:not(:first-child) label { display: flex; gap: 10px; align-items: center; min-height: 46px; padding: 8px 12px; border: 1px solid var(--gray-200); border-radius: 8px; cursor: pointer; }
+      .matrix td:not(:first-child) label:has(input:checked) { border-color: var(--primary); background: #f8eef1; font-weight: 600; }
+      .matrix td:not(:first-child) .mobile-label { display: inline; font-size: 15px; }
+      .matrix tr.invalid td:not(:first-child) label { border-color: var(--red); }
+      .options label { min-height: 46px; align-items: center; font-size: 15px; }
+      .options input { margin-top: 0; }
+      .matrix input[type="radio"], .options input { width: 20px; height: 20px; flex-shrink: 0; }
+      .uso-card { padding: 10px; }
+      .actions { flex-direction: column-reverse; }
+      .actions button { width: 100%; padding: 14px; font-size: 16px; }
+      .overlay-box { padding: 28px 24px; width: 100%; max-width: 320px; }
     }
     .mobile-label { display: none; font-size: 13px; }
 
@@ -359,6 +380,9 @@
     buildMatrix('p10', P10_ITEMS, P10_SCALE);
     buildUsos();
     form.addEventListener('reset', () => { msg.className = 'msg'; });
+    form.querySelector('button[type="reset"]').addEventListener('click', e => {
+      if (!confirm('¿Borrar todas las respuestas capturadas?')) e.preventDefault();
+    });
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
