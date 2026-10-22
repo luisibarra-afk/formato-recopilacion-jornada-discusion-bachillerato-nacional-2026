@@ -4,16 +4,16 @@
  *
  * Hojas que crea:
  *  - "Respuestas": una fila por docente (se reemplaza si el mismo docente reenvía).
- *  - "Resumen": concentrado por turno con el formato de las preguntas 7–13 del
+ *  - "Resumen": concentrado del plantel con el formato de las preguntas 7–13 del
  *    formulario oficial (se genera con el menú "Jornada > Generar resumen").
  */
 
 const HOJA_RESPUESTAS = 'Respuestas';
 const HOJA_RESUMEN = 'Resumen';
 
-// Total de docentes por turno para calcular las proporciones de las preguntas 12 y 13.
+// Total de docentes del plantel para calcular las proporciones de las preguntas 12 y 13.
 // Si se deja en 0 se usa el número de docentes que respondieron.
-const TOTAL_DOCENTES = { 'Matutino': 0, 'Vespertino': 0 };
+const TOTAL_DOCENTES = 0;
 
 const P7 = [
   ['p7_1', '7.1 Fortalecimiento del sustento filosófico y pedagógico del MCCEMS'],
@@ -44,7 +44,6 @@ const COLUMNAS = [
   ['nombre', 'Nombre(s)'],
   ['apellidoPaterno', 'Apellido paterno'],
   ['apellidoMaterno', 'Apellido materno'],
-  ['turno', 'Turno'],
   ['asignaturas', 'Asignatura(s)'],
   ...P7,
   ['p8_1', '8. Razón 1'],
@@ -77,7 +76,7 @@ function doPost(e) {
   lock.waitLock(20000);
   try {
     const data = JSON.parse(e.postData.contents);
-    ['nombre', 'apellidoPaterno', 'apellidoMaterno', 'turno'].forEach(k => {
+    ['nombre', 'apellidoPaterno', 'apellidoMaterno'].forEach(k => {
       if (!data[k] || !String(data[k]).trim()) throw new Error('Falta el campo ' + k);
     });
     data.fecha = new Date();
@@ -101,12 +100,14 @@ function doPost(e) {
 function hojaRespuestas_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sh = ss.getSheetByName(HOJA_RESPUESTAS);
-  if (!sh) {
-    sh = ss.insertSheet(HOJA_RESPUESTAS);
-    sh.appendRow(COLUMNAS.map(([, titulo]) => titulo));
-    sh.getRange(1, 1, 1, COLUMNAS.length).setFontWeight('bold').setBackground('#691c32').setFontColor('#ffffff').setWrap(true);
-    sh.setFrozenRows(1);
-  }
+  if (!sh) sh = ss.insertSheet(HOJA_RESPUESTAS);
+  // Encabezados siempre alineados con COLUMNAS (por si cambió la versión del formulario)
+  sh.getRange(1, 1, 1, COLUMNAS.length)
+    .setValues([COLUMNAS.map(([, titulo]) => titulo)])
+    .setFontWeight('bold').setBackground('#691c32').setFontColor('#ffffff').setWrap(true);
+  const sobrantes = sh.getLastColumn() - COLUMNAS.length;
+  if (sobrantes > 0) sh.getRange(1, COLUMNAS.length + 1, 1, sobrantes).clearContent().setBackground(null);
+  sh.setFrozenRows(1);
   return sh;
 }
 
@@ -131,7 +132,7 @@ function json_(obj) {
 }
 
 /**
- * Concentra las respuestas por turno con la estructura de las preguntas 7–13
+ * Concentra las respuestas del plantel con la estructura de las preguntas 7–13
  * del formulario oficial, para que la persona relatora lo transcriba.
  */
 function generarResumen() {
@@ -159,10 +160,9 @@ function generarResumen() {
     if (titulo) titulos.push(salida.length);
   };
 
-  ['Matutino', 'Vespertino'].forEach(turno => {
-    const grupo = registros.filter(r => r.turno === turno || r.turno === 'Ambos turnos');
-    push(['TURNO ' + turno.toUpperCase() + ' – docentes que respondieron: ' + grupo.length], true);
-    if (!grupo.length) { push(['']); return; }
+  {
+    const grupo = registros;
+    push(['PLANTEL – docentes que respondieron: ' + grupo.length], true);
 
     push(['7. Pertinencia de los cambios', ...P7_ESCALA, 'Respuesta predominante'], true);
     P7.forEach(([k, etiqueta]) => push([etiqueta, ...conteoEscala_(grupo, k, P7_ESCALA)]));
@@ -183,14 +183,13 @@ function generarResumen() {
       lista_(grupo, ['p11_' + m + '_1', 'p11_' + m + '_2', 'p11_' + m + '_3']).forEach(t => push(['   • ' + t]));
     });
 
-    const total = TOTAL_DOCENTES[turno] || grupo.length;
+    const total = TOTAL_DOCENTES || grupo.length;
     [['p12', '12. Taller "Apropiación del MCCEMS"'], ['p13', '13. Curso "Hacia la consolidación del MCCEMS"']].forEach(([k, etiqueta]) => {
       const concluyeron = grupo.filter(r => r[k] === 'Sí, lo concluí').length;
       const prop = concluyeron / total;
       push([etiqueta, 'Concluyeron: ' + concluyeron + ' de ' + total, Math.round(prop * 100) + '%', categoria_(prop)], true);
     });
-    push(['']);
-  });
+  }
 
   res.getRange(1, 1, salida.length, 5).setValues(salida).setWrap(true).setVerticalAlignment('top');
   titulos.forEach(f => res.getRange(f, 1, 1, 5).setFontWeight('bold').setBackground('#f1e6e9'));

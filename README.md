@@ -1,6 +1,6 @@
 # Formato de recopilación – Jornada de Discusión del Bachillerato Nacional (octubre 2026)
 
-Formulario individual para docentes (`index.html`) conectado a Google Apps Script (`Code.gs`). Homologa las preguntas 7–13 del formulario oficial con las preguntas orientadoras del Anexo 1; el script concentra las respuestas por turno para que la persona relatora llene el reporte único por plantel y turno.
+Formulario individual para docentes (`index.html`) conectado a Google Apps Script (`Code.gs`). Homologa las preguntas 7–13 del formulario oficial con las preguntas orientadoras del Anexo 1; el script concentra las respuestas del plantel para que la persona relatora llene el reporte oficial.
 
 ## Correspondencia de preguntas
 
@@ -22,7 +22,7 @@ Las preguntas 1–6 (caracterización del plantel) no se piden al docente; las l
 
 1. Crear una Hoja de cálculo de Google.
 2. Extensiones → Apps Script. Pegar el contenido de `Code.gs` y guardar.
-3. Opcional: en `TOTAL_DOCENTES` poner el total de docentes por turno. Con 0 se usa el número de docentes que respondieron como base de las preguntas 12 y 13.
+3. Opcional: en `TOTAL_DOCENTES` poner el total de docentes del plantel. Con 0 se usa el número de docentes que respondieron como base de las preguntas 12 y 13.
 4. Implementar → Nueva implementación → Tipo: Aplicación web.
    - Ejecutar como: Yo.
    - Quién tiene acceso: Cualquier persona.
@@ -32,5 +32,5 @@ Las preguntas 1–6 (caracterización del plantel) no se piden al docente; las l
 ## Uso
 
 - Cada envío agrega una fila en la hoja "Respuestas". Si un docente reenvía con el mismo nombre completo, su fila se reemplaza.
-- En la hoja de cálculo: menú **Jornada → Generar resumen** crea la hoja "Resumen" separada por turno (Matutino / Vespertino). Quien elige "Ambos turnos" se cuenta en los dos.
+- En la hoja de cálculo: menú **Jornada → Generar resumen** crea la hoja "Resumen" con el concentrado de todo el plantel.
 - Los rangos de proporción (preguntas 12 y 13) usan: menos de un cuarto, entre un cuarto y la mitad, entre la mitad y tres cuartos, más de tres cuartos. Ajustar el texto en `PROPORCIONES` si el formulario oficial usa otras etiquetas.
